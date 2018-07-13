@@ -1,0 +1,7 @@
+{
+    "name": "aeros/cms",
+    "description": "Customizable and open source content management system.",
+    "type": "project",
+    "license": "MIT",
+    "require": {}
+}

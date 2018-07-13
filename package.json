@@ -1,0 +1,11 @@
+{
+  "name": "aeros-cms",
+  "version": "1.0.0-alpha1",
+  "description": "Customizable and open source content management system.",
+  "main": "public/index.php",
+  "scripts": {
+    "test": "tests/run.php"
+  },
+  "author": "Aeros Development",
+  "license": "MIT"
+}
