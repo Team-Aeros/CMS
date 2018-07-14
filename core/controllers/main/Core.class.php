@@ -11,10 +11,10 @@
  * @license MIT
  */
 
-namespace WIPCMS\core\admin\main\controllers;
+namespace WIPCMS\core\controllers\main;
 
-class Admin {
-    
+class Core {
+
     public function run() : void {
         echo 'Things appear to be working.';
     }

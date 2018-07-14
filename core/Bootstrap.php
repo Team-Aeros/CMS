@@ -16,8 +16,10 @@ declare(strict_types = 1);
 define('REQUIRED_PHP_VERSION', '7.1.0');
 define('DEBUG', true);
 
-use WIPCMS\core\admin\main\controllers\Admin;
-use WIPCMS\core\main\controllers\Core;
+require __DIR__ . '/../vendor/autoload.php';
+
+use WIPCMS\core\admin\controllers\main\Admin;
+use WIPCMS\core\controllers\main\Core;
 
 function init(bool $admin = false) : void {
     if (version_compare(phpversion(), REQUIRED_PHP_VERSION, '<'))
