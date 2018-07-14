@@ -11,7 +11,11 @@
  * @license MIT
  */
 
-require __DIR__ . '/../autoload.php';
-require __DIR__ . '/../core/Bootstrap.php';
+namespace WIPCMS\core\admin\main\controllers;
 
-init();
+class Admin {
+    
+    public function run() : void {
+        echo 'Things appear to be working.';
+    }
+}

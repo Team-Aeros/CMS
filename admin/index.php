@@ -1,3 +1,17 @@
 <?php
-header('Location: ../index.php');
-die;
+/**
+ * WIP CMS
+ * Open source content management system
+ *
+ * @version 1.0 Alpha 1
+ * @author Aeros Development
+ * @copyright 2018, WIP CMS
+ * @link https://aeros.com/wipcms
+ *
+ * @license MIT
+ */
+
+require __DIR__ . '/../autoload.php';
+require __DIR__ . '/../core/Bootstrap.php';
+
+init(true);
