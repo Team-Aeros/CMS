@@ -3,5 +3,12 @@
     "description": "Customizable and open source content management system.",
     "type": "project",
     "license": "MIT",
-    "require": {}
+    "require": {
+        "twig/twig": "^2.0",
+        "symfony/console": "^4.1",
+        "symfony/config": "^4.1",
+        "symfony/form": "^4.1",
+        "symfony/routing": "^4.1",
+        "symfony/filesystem": "^4.1"
+    }
 }
