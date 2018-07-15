@@ -7,5 +7,8 @@
     "test": "tests/run.php"
   },
   "author": "Aeros Development",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.1.2"
+  }
 }
