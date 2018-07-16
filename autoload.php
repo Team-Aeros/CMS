@@ -10,7 +10,6 @@
  *
  * @license MIT
  */
-
 spl_autoload_register(function(string $classname) : void {
     $parts = explode('\\', $classname);
 
