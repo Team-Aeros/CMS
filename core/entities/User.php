@@ -9,19 +9,19 @@ class User
     /** @Id @Column(type="integer") @GeneratedValue */
     private $id;
 
-    /** @Column(type="string", length=50, unique=true, nullable=false) */
+    /** @Column(type="string", length=50, unique=true) */
     private $email;
 
-    /** @Column(type="string", length=30, unique=true, nullable=false) */
+    /** @Column(type="string", length=30, unique=true) */
     private $name;
 
-    /** @Column(type="string", length=60, unique=true, nullable=false) */
+    /** @Column(type="string", length=60, unique=true) */
     private $password;
 
     /** @Column(type="datetime") */
     private $created_at;
 
-    /** @Column(type="datetime" nullable="true") */
+    /** @Column(type="datetime", nullable=true) */
     private $last_session;
 
     /**
