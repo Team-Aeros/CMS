@@ -18,10 +18,9 @@ define('DEBUG', true);
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use WIPCMS\core\admin\controllers\main\Admin;
 use WIPCMS\core\controllers\main\Core;
 
-function init(bool $admin = false) : void {
+function init() : void {
     if (version_compare(phpversion(), REQUIRED_PHP_VERSION, '<'))
         die('Unsupported PHP version. PHP version ' . REQUIRED_PHP_VERSION . ' or higher is required.');
 
@@ -32,6 +31,9 @@ function init(bool $admin = false) : void {
 
     if (!file_exists(__DIR__ . '/../vendor/autoload.php'))
         die('Could not find dependency autoloader. Please run <em>composer install</em>.');
+
+    if (!is_dir(__DIR__ . '/node_modules'))
+        die('Could not find Javascript dependencies. Please run <em>npm install</em>.');
 
     if (DEBUG) {
         @error_reporting(E_ALL);
