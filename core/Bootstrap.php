@@ -13,7 +13,7 @@
 
 declare(strict_types = 1);
 
-define('REQUIRED_PHP_VERSION', '7.1.0');
+define('REQUIRED_PHP_VERSION', '7.2.0');
 define('DEBUG', true);
 
 require __DIR__ . '/../vendor/autoload.php';
