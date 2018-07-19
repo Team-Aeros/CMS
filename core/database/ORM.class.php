@@ -1,4 +1,16 @@
 <?php
+/**
+ * WIP CMS
+ * Open source content management system
+ *
+ * @version 1.0 Alpha 1
+ * @author Aeros Development
+ * @copyright 2018, WIP CMS
+ * @link https://aeros.com/wipcms
+ *
+ * @license MIT
+ */
+
 namespace WIPCMS\core\database;
 
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
@@ -18,6 +30,19 @@ class ORM {
     private function __construct()
     {
         $this->paths = ['../entities'];
+
+        /**
+         *   // In this class
+         *   Hook::create('entity_paths', $this->paths);
+         *
+         *   // Plugin
+         *   {
+         *       Hook::add('entity_paths', function(array &$paths) {
+         *           $paths[] = '/my/plugin/dir/entities';
+         *       });
+         *   }
+         */
+
         $this->isDevMode = true;
 
         $this->dbParams = include 'migrations-db.php';
