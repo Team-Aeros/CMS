@@ -38,6 +38,5 @@ function init(bool $admin = false) : void {
         @ini_set('display_errors', 'On');
     }
 
-    $app = $admin ? new Admin() : new Core();
-    $app->run();
+    (new Core())->run();
 }
