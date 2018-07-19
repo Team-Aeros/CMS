@@ -32,7 +32,7 @@ function init() : void {
     if (!file_exists(__DIR__ . '/../vendor/autoload.php'))
         die('Could not find dependency autoloader. Please run <em>composer install</em>.');
 
-    if (!is_dir(__DIR__ . '/node_modules'))
+    if (!file_exists(__DIR__ . '/../node_modules'))
         die('Could not find Javascript dependencies. Please run <em>npm install</em>.');
 
     if (DEBUG) {
