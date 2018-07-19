@@ -29,7 +29,7 @@ class ORM {
 
     private function __construct()
     {
-        $this->paths = ['../entities'];
+        $this->paths = [__dir__ . '/../entities'];
 
         /**
          *   // In this class
