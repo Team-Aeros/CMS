@@ -9,26 +9,36 @@ class User
     /** @Id @Column(type="integer") @GeneratedValue */
     private $id;
 
-    /** @Column(type="string", nullable=true) */
-    private $username;
+    /** @Column(type="string", length=50, unique=true, nullable=false) */
+    private $email;
 
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
+    /** @Column(type="string", length=30, unique=true, nullable=false) */
+    private $name;
 
-    public function getId() : ?int
-    {
-        return $this->id;
-    }
+    /** @Column(type="string", length=60, unique=true, nullable=false) */
+    private $password;
 
-    public function setUsername(string $username) : void
-    {
-        $this->username = $username;
-    }
+    /** @Column(type="datetime") */
+    private $created_at;
 
-    public function getUsername() : ?string
+    /** @Column(type="datetime" nullable="true") */
+    private $last_session;
+
+    /**
+     * Many Users have One Group.
+     * @ManyToOne(targetEntity="Group", inversedBy="users")
+     * @JoinColumn(name="group_id", referencedColumnName="id")
+     */
+    private $group;
+
+    /**
+     * One User has Many Tokens.
+     * @OneToMany(targetEntity="Token", mappedBy="user")
+     */
+    private $tokens;
+
+    public function __construct()
     {
-        return $this->username;
+        $this->created_at = new \DateTime('now');
     }
 }

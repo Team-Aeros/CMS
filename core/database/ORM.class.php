@@ -44,9 +44,7 @@ class ORM {
          */
 
         $this->isDevMode = true;
-
         $this->dbParams = include 'migrations-db.php';
-
         $this->config = Setup::createAnnotationMetadataConfiguration($this->paths, $this->isDevMode);
         $this->entityManager = EntityManager::create($this->dbParams, $this->config);
     }
