@@ -18,7 +18,7 @@ use WIPCMS\core\interfaces\Storable;
 
 class Registry {
 
-    private static function $_objects = [];
+    private static $_objects = [];
 
     public static function store(string $identifier, Storable $storable) : Storable {
         if (isset(self::$_objects[$identifier]))
@@ -28,6 +28,9 @@ class Registry {
     }
 
     public static function retrieve(string $identifier) : Storable {
-        return self::$_objects[$identifier] or throw new Exception('Object with identifier ' . $identifier . ' is not in storage.');
+        if (isset(self::$_objects[$identifier]))
+            return self::$_objects[$identifier];
+
+        throw new Exception('Object with identifier ' . $identifier . ' is not in storage.');
     }
 }

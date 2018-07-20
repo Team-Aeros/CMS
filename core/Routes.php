@@ -22,6 +22,8 @@ $routes = new RouteCollection();
 
 $routes->add('admin', new Route('/admin', ['_controller' => WIPCMS\core\admin\controllers\main\Admin::class]));
 
+$routes->add('home', new Route('/'));
+
 /* ADD ROUTES ABOVE THIS LINE */
 
 return $routes;

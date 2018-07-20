@@ -18,6 +18,7 @@ define('DEBUG', true);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use WIPCMS\core\common\{Registry, Router};
 use WIPCMS\core\controllers\main\Core;
 
 function init() : void {
@@ -39,6 +40,8 @@ function init() : void {
         @error_reporting(E_ALL);
         @ini_set('display_errors', 'On');
     }
+
+    Registry::store('router', new Router(__DIR__ . '/Routes.php'));
 
     (new Core())->run();
 }

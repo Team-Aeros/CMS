@@ -14,22 +14,24 @@
 namespace WIPCMS\core\common;
 
 use Exception;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\{RequestContext, Route, RouteCollection};
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
+use WIPCMS\core\interfaces\Storable;
 
-class Router {
+class Router implements Storable {
 
     private $_fileLocation;
     private $_routeCollection;
     private $_requestContext;
     private $_matcher;
 
-    public function __construct(string $routeFileLocation, string $path = '/') {
+    public function __construct(string $routeFileLocation) {
         $this->_fileLocation = $routeFileLocation ?? 'Routes.php';
 
         $this->loadRoutesFile();
-        $this->setupRequestContext($path);
+        $this->setupRequestContext();
         $this->setupMatcher();
     }
 
@@ -45,16 +47,13 @@ class Router {
         throw new Exception('Could not load routes file: ' . $this->_fileLocation);
     }
 
-    private function setupRequestContext(string $path) : void {
-        $this->_requestContext = new RequestContext($path);
+    private function setupRequestContext() : void {
+        $this->_requestContext = new RequestContext();
+        $this->_requestContext->fromRequest(Request::createFromGlobals());
     }
 
     private function setupMatcher() : void {
         $this->_matcher = new UrlMatcher($this->_routeCollection, $this->_requestContext);
-    }
-
-    public function match(string $url) : array {
-        return [];
     }
 
     public function getRouteCollection() : RouteCollection {
@@ -63,5 +62,9 @@ class Router {
 
     public function getRequestContext() : RequestContext {
         return $this->_requestContext;
+    }
+
+    public function getCurrentRoute() : array {
+        return $this->_matcher->match($this->_requestContext->getPathInfo());
     }
 }

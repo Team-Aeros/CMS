@@ -13,6 +13,8 @@
 
 namespace WIPCMS\core\controllers\main;
 
+use WIPCMS\core\common\Registry;
+
 class Core {
 
     public function run() : void {
