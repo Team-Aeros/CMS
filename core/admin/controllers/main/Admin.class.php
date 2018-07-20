@@ -18,7 +18,7 @@ use WIPCMS\core\interfaces\Controller;
 
 class Admin implements Controller {
 
-    private $_router;
+    private $_routeInfo;
     private $_model;
 
     public function __construct() {
@@ -26,7 +26,7 @@ class Admin implements Controller {
     }
 
     public function setup(array $details) : void {
-        $this->_router = $details['router'];
+        $this->_routeInfo = $details['routeinfo'];
     }
 
     public function getModuleContext() : array {

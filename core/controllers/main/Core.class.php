@@ -43,7 +43,7 @@ class Core {
             die(sprintf('Unable to get route: %s on line %u', __FILE__, __LINE__));
 
         $this->_module = new $route['controller'];
-        $this->_module->setup(['router' => $this->_router]);
+        $this->_module->setup(['routeinfo' => $route]);
         $this->_moduleContext = $this->_module->getModuleContext();
     }
 }

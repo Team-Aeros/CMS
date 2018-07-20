@@ -13,12 +13,29 @@
 
 namespace WIPCMS\core\interfaces;
 
-
 interface Controller {
 
+    /**
+     * This method should return module context, such as the title, required permissions, etc.
+     * @return array The module context
+     */
     public function getModuleContext() : array;
 
+    /**
+     * Dependency injection. Used for inserting things like route info.
+     * @param array $details Dependencies.
+     */
     public function setup(array $details) : void;
+
+    /**
+     * Handles the necessary logic.
+     * @return int Error code 0 for succcess, > 0 for failure
+     */
     public function execute() : int;
+
+    /**
+     * Displays the template by making a call to the GUI controller.
+     * @return int Error code 0 for succcess, > 0 for failure
+     */
     public function display() : int;
 }
