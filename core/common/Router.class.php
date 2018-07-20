@@ -16,7 +16,7 @@ namespace WIPCMS\core\common;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\{RequestContext, Route, RouteCollection};
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Symfony\Component\Routing\Exception\{NoConfigurationException, ResourceNotFoundException, RouteNotFoundException};
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use WIPCMS\core\interfaces\Storable;
 
@@ -65,6 +65,15 @@ class Router implements Storable {
     }
 
     public function getCurrentRoute() : array {
-        return $this->_matcher->match($this->_requestContext->getPathInfo());
+        $route = [];
+
+        try {
+            $route = $this->_matcher->match($this->_requestContext->getPathInfo());
+        }
+        catch (RouteNotFoundException | ResourceNotFoundException | NoConfigurationException $e) {
+            // do nothing
+        }
+
+        return $route;
     }
 }

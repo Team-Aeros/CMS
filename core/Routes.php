@@ -20,9 +20,9 @@ $routes = new RouteCollection();
 
 /* ADD ROUTES BELOW THIS LINE */
 
-$routes->add('admin', new Route('/admin', ['_controller' => WIPCMS\core\admin\controllers\main\Admin::class]));
+$routes->add('admin', new Route('/admin', ['controller' => \WIPCMS\core\admin\controllers\main\Admin::class]));
 
-$routes->add('home', new Route('/'));
+$routes->add('home', new Route('/', ['controller' => \WIPCMS\core\controllers\main\Homepage::class]));
 
 /* ADD ROUTES ABOVE THIS LINE */
 
