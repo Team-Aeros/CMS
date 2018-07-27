@@ -13,9 +13,37 @@
 
 namespace WIPCMS\core\controllers\main;
 
+use WIPCMS\core\common\Registry;
+
 class Core {
 
+    private $_router;
+    private $_module;
+    private $_moduleContext;
+
+    public function __construct() {
+        $this->_router = Registry::retrieve('router');
+    }
+
     public function run() : void {
-        echo 'Things appear to be working.';
+        $this->loadModule();
+
+        $returnCode = $this->_module->execute();
+
+        if ($returnCode === 0)
+            $this->_module->display();
+
+        echo 'Current section: ', $this->_moduleContext['title'];
+    }
+
+    private function loadModule() : void {
+        $route = $this->_router->getCurrentRoute();
+
+        if (count($route) === 0)
+            die(sprintf('Unable to get route: %s on line %u', __FILE__, __LINE__));
+
+        $this->_module = new $route['controller'];
+        $this->_module->setup(['routeinfo' => $route]);
+        $this->_moduleContext = $this->_module->getModuleContext();
     }
 }

@@ -18,6 +18,7 @@ define('DEBUG', true);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use WIPCMS\core\common\{Registry, Router};
 use WIPCMS\core\controllers\main\Core;
 
 function init() : void {
@@ -32,13 +33,15 @@ function init() : void {
     if (!file_exists(__DIR__ . '/../vendor/autoload.php'))
         die('Could not find dependency autoloader. Please run <em>composer install</em>.');
 
-    if (!is_dir(__DIR__ . '/node_modules'))
+    if (!file_exists(__DIR__ . '/../node_modules'))
         die('Could not find Javascript dependencies. Please run <em>npm install</em>.');
 
     if (DEBUG) {
         @error_reporting(E_ALL);
         @ini_set('display_errors', 'On');
     }
+
+    Registry::store('router', new Router(__DIR__ . '/Routes.php'));
 
     (new Core())->run();
 }
