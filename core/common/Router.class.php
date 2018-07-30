@@ -28,7 +28,7 @@ class Router implements Storable {
     private $_matcher;
 
     public function __construct(string $routeFileLocation) {
-        $this->_fileLocation = $routeFileLocation ?? 'Routes.php';
+        $this->_fileLocation = $routeFileLocation ?? 'routes.php';
 
         $this->loadRoutesFile();
         $this->setupRequestContext();

@@ -38,7 +38,9 @@ class Core {
 
     private function loadModule() : void {
         $route = $this->_router->getCurrentRoute();
+        var_dump($route);
 
+        die;
         if (count($route) === 0)
             die(sprintf('Unable to get route: %s on line %u', __FILE__, __LINE__));
 

@@ -18,7 +18,6 @@ use WIPCMS\core\interfaces\Controller;
 class Homepage implements Controller {
 
     public function setup(array $details) : void {
-
     }
 
     public function getModuleContext() : array {
@@ -33,5 +32,9 @@ class Homepage implements Controller {
 
     public function display() : int {
         return 0;
+    }
+
+    static function test() {
+        echo 'Dit werkt!';
     }
 }
