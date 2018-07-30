@@ -13,24 +13,5 @@
 
 namespace WIPCMS\core\controllers\main;
 
-use WIPCMS\core\interfaces\Controller;
-
-class Admin implements Controller {
-
-    public function setup(array $details) : void {
-    }
-
-    public function getModuleContext() : array {
-        return [
-            'title' => 'Admin'
-        ];
-    }
-
-    public function execute() : int {
-        return 0;
-    }
-
-    public function display() : int {
-        return 0;
-    }
+class Admin {
 }
