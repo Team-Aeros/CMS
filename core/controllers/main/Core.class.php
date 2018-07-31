@@ -29,8 +29,13 @@ class Core {
 
     private function loadModule() : void {
         $route = $this->_router->getCurrentRoute();
+
         if (count($route) === 0)
             die(sprintf('Unable to get route: %s on line %u', __FILE__, __LINE__));
+
+        /**
+         * @todo When the plugin system is being worked on, replace the following line
+         */
         call_user_func_array('WIPCMS\core\controllers\main\\' . $route[0], (count($route) > 2) ? $route[1] : []);
     }
 }

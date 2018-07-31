@@ -21,9 +21,6 @@ class Registry {
     private static $_objects = [];
 
     public static function store(string $identifier, Storable $storable) : Storable {
-        if (isset(self::$_objects[$identifier]))
-            throw new Exception('Object with identifier ' . $identifier . ' is already in storage.');
-
         return self::$_objects[$identifier] = $storable;
     }
 
