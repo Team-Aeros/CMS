@@ -28,6 +28,8 @@ function init() : void {
     ob_start();
     set_time_limit(25);
 
+    require_once __DIR__ . '/../config/config.php';
+
     ini_set('session.cookie_lifetime', '' . 10 * 365 * 24 * 60 * 60);
 
     if (!file_exists(__DIR__ . '/../vendor/autoload.php'))
@@ -41,7 +43,8 @@ function init() : void {
         @ini_set('display_errors', 'On');
     }
 
-    Registry::store('router', new Router(__DIR__ . '/Routes.php'));
+
+    Registry::store('router', new Router(__DIR__ . '/routes.php'));
 
     (new Core())->run();
 }

@@ -30,21 +30,8 @@ class ORM {
     private function __construct()
     {
         $this->paths = [__dir__ . '/../entities'];
-
-        /**
-         *   // In this class
-         *   Hook::create('entity_paths', $this->paths);
-         *
-         *   // Plugin
-         *   {
-         *       Hook::add('entity_paths', function(array &$paths) {
-         *           $paths[] = '/my/plugin/dir/entities';
-         *       });
-         *   }
-         */
-
         $this->isDevMode = true;
-        $this->dbParams = include 'migrations-db.php';
+        $this->dbParams = CONFIG['database'];
         $this->config = Setup::createAnnotationMetadataConfiguration($this->paths, $this->isDevMode);
         $this->entityManager = EntityManager::create($this->dbParams, $this->config);
     }

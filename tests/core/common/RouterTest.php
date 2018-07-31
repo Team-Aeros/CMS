@@ -7,7 +7,7 @@ class RouterTest extends PHPUnit\Framework\TestCase {
     private $_router;
 
     public function setUp() {
-        $this->_router = new Router(__DIR__ . '/../../../core/Routes.php');
+        $this->_router = new Router(__DIR__ . '/../../../core/routes.php');
     }
 
     public function testGetHttpMethod() : void {

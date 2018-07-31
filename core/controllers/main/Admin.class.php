@@ -11,13 +11,7 @@
  * @license MIT
  */
 
-namespace WIPCMS\core\admin\models\main;
+namespace WIPCMS\core\controllers\main;
 
-use WIPCMS\core\interfaces\Model;
-
-class Admin implements Model {
-
-    public function getTitle() : string {
-        return 'Admin panel';
-    }
+class Admin {
 }

@@ -13,25 +13,12 @@
 
 namespace WIPCMS\core\controllers\main;
 
-use WIPCMS\core\interfaces\Controller;
-
-class Homepage implements Controller {
-
-    public function setup(array $details) : void {
-
+class Homepage {
+    static function test() {
+        echo 'Dit werkt!';
     }
 
-    public function getModuleContext() : array {
-        return [
-            'title' => 'Homepage'
-        ];
-    }
-
-    public function execute() : int {
-        return 0;
-    }
-
-    public function display() : int {
-        return 0;
+    static function showParams($param1, $param2, $param3) {
+        echo "these are the params: " . $param1 . ', ' . $param2 . ', ' . $param3;
     }
 }

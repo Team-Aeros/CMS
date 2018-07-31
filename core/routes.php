@@ -13,16 +13,14 @@
 
 namespace WIPCMS\core;
 
-use Symfony\Component\Routing\{RequestContext, Route, RouteCollection};
-use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\{Route, RouteCollection};
 
 $routes = new RouteCollection();
 
 /* ADD ROUTES BELOW THIS LINE */
 
-$routes->add('admin', new Route('/admin', ['controller' => \WIPCMS\core\admin\controllers\main\Admin::class]));
-
-$routes->add('home', new Route('/', ['controller' => \WIPCMS\core\controllers\main\Homepage::class]));
+$routes->add('home', new Route('/', ['Homepage::test']));
+$routes->add('test', new Route('/test', ['Homepage::showParams', ['hello', 1, 'hoi'] ]));
 
 /* ADD ROUTES ABOVE THIS LINE */
 
