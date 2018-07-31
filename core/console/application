@@ -5,10 +5,16 @@ namespace WIPCMS\core\console;
 require __DIR__ . '/../../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
-use WIPCMS\core\console\commands\TestCommand;
 
 $application = new Application();
 
-$application->add(new TestCommand());
+$application->addCommands([
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\LatestCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand(),
+    new \Doctrine\DBAL\Migrations\Tools\Console\Command\VersionCommand()
+]);
 
 $application->run();

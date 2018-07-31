@@ -30,6 +30,7 @@ class ORM {
     private function __construct()
     {
         $this->paths = [__dir__ . '/../entities'];
+//        $this->paths = CONFIG['entities'];
         $this->isDevMode = true;
         $this->dbParams = CONFIG['database'];
         $this->config = Setup::createAnnotationMetadataConfiguration($this->paths, $this->isDevMode);
