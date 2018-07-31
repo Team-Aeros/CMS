@@ -16,9 +16,12 @@ declare(strict_types = 1);
 define('REQUIRED_PHP_VERSION', '7.2.0');
 define('DEBUG', true);
 
-require __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/wrappers.php';
 
-use WIPCMS\core\common\{Registry, Router};
+use WIPCMS\core\common\{Language, Registry, Router};
 use WIPCMS\core\controllers\main\Core;
 
 function init() : void {
@@ -27,8 +30,6 @@ function init() : void {
 
     ob_start();
     set_time_limit(25);
-
-    require_once __DIR__ . '/../config/config.php';
 
     ini_set('session.cookie_lifetime', '' . 10 * 365 * 24 * 60 * 60);
 
@@ -43,8 +44,8 @@ function init() : void {
         @ini_set('display_errors', 'On');
     }
 
-
     Registry::store('router', new Router(__DIR__ . '/routes.php'));
+    Registry::store('language', new Language(CONFIG['site']['default_language']));
 
     (new Core())->run();
 }

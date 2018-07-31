@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../../core/Bootstrap.php';
+require __DIR__ . '/../../core/bootstrap.php';
 
 class BootstrapTest extends PHPUnit\Framework\TestCase {
 

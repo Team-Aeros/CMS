@@ -11,7 +11,6 @@
  * @license MIT
  */
 
-require __DIR__ . '/../autoload.php';
-require __DIR__ . '/../core/Bootstrap.php';
+require __DIR__ . '/../core/bootstrap.php';
 
 init();
