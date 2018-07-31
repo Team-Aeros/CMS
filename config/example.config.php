@@ -7,5 +7,9 @@ const CONFIG = [
         'password' => 'root',
         'host' => 'localhost',
         'driver' => 'pdo_mysql',
+    ],
+
+    'site' => [
+        'default_language' => 'en_US'
     ]
 ];

@@ -45,7 +45,7 @@ function init() : void {
     }
 
     Registry::store('router', new Router(__DIR__ . '/routes.php'));
-    Registry::store('language', new Language('en_US'));
+    Registry::store('language', new Language(CONFIG['site']['default_language']));
 
     (new Core())->run();
 }
