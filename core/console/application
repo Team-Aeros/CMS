@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+namespace WIPCMS\core\console;
+
+require __DIR__ . '/../../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use WIPCMS\core\console\commands\TestCommand;
+
+$application = new Application();
+
+$application->add(new TestCommand());
+
+$application->run();
