@@ -2,9 +2,5 @@
   "name": "My Project Migrations",
   "migrations_namespace": "migrations",
   "table_name": "migrations",
-  "column_name": "version",
-  "column_length": 255,
-  "executed_at_column_name": "executed_at",
-  "migrations_directory": "migrations",
-  "all_or_nothing": true
+  "migrations_directory": "migrations"
 }

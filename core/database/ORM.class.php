@@ -13,11 +13,8 @@
 
 namespace WIPCMS\core\database;
 
-use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
-use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Console\Helper\HelperSet;
 
 class ORM {
     private static $_instance;
