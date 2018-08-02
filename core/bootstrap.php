@@ -21,7 +21,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/wrappers.php';
 
-use WIPCMS\core\common\{Language, Registry, Router};
+use WIPCMS\core\common\{GUI, Language, Registry, Router};
 use WIPCMS\core\controllers\main\Core;
 
 function init() : void {
@@ -46,6 +46,7 @@ function init() : void {
 
     Registry::store('router', new Router(__DIR__ . '/routes.php'));
     Registry::store('language', new Language(CONFIG['site']['default_language']));
+    Registry::store('gui', new GUI());
 
     (new Core())->run();
 }

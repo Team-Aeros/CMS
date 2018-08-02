@@ -18,3 +18,7 @@ use WIPCMS\core\common\Registry;
 function translate(string $identifier, string ...$parameters) : string {
     return Registry::retrieve('language')->read($identifier, ...$parameters);
 }
+
+function returnView(string $view, ?array $params = []) : string {
+    return Registry::retrieve('gui')->returnView($view, $params);
+}

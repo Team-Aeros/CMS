@@ -1,0 +1,17 @@
+body {
+    background-color: #efefef;
+}
+
+#login-field {
+    background-color: #ffffff;
+    display: block;
+    margin-top: 200px;
+}
+
+#login-field h4 {
+    padding: 26px;
+}
+
+#login-field form {
+    padding: 0 26px 26px 26px;
+}
