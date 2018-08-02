@@ -24,6 +24,7 @@ class Core {
     }
 
     public function run() : void {
+        session_start();
         $this->loadModule();
     }
 

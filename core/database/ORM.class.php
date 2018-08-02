@@ -13,6 +13,7 @@
 
 namespace WIPCMS\core\database;
 
+use Doctrine\Common\Util\Debug;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
@@ -80,5 +81,15 @@ class ORM {
     public function getEntityManager()
     {
         return $this->entityManager;
+    }
+
+    /**
+     * @param $entity Entity instance to print on the screen
+     */
+    static function dump($entity)
+    {
+        echo "<pre>";
+        Debug::dump($entity);
+        echo "</pre>";
     }
 }
