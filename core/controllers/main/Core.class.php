@@ -36,6 +36,13 @@ class Core {
         /**
          * @todo When the plugin system is being worked on, replace the following line
          */
-        call_user_func_array('WIPCMS\core\controllers\main\\' . $route[0], (count($route) > 2) ? $route[1] : []);
+
+        $call = explode('@', $route[0]);
+        if (count($call) !== 2)
+            die(sprintf('Route not declared correctly, should be Class@Function: %s on line %u', __FILE__, __LINE__));
+
+        $class = 'WIPCMS\core\controllers\main\\' . $call[0];
+        $controller = new $class();
+        $controller->{$call[1]}((count($route) > 2) ? $route[1] : []);
     }
 }
