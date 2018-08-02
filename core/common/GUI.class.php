@@ -17,8 +17,11 @@ use Twig_Environment;
 use Twig_Error_Loader;
 use Twig_Error_Runtime;
 use Twig_Error_Syntax;
+use Twig_Function;
 use Twig_Loader_Filesystem;
 use WIPCMS\core\interfaces\Storable;
+
+use function WIPCMS\core\translate;
 
 class GUI implements Storable {
 
@@ -36,6 +39,10 @@ class GUI implements Storable {
         ];
 
         $this->_twig = new Twig_Environment(new Twig_Loader_Filesystem($this->_templatePaths));
+
+        $this->_twig->addFunction(new Twig_Function('translate', function(string $identifier, string ...$params) : string {
+            return translate($identifier, ...$params);
+        }));
     }
 
     public function returnView(string $view, ?array $params = []) : string {
