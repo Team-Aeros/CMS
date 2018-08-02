@@ -13,12 +13,14 @@
 
 namespace WIPCMS\core\controllers\main;
 
-class Homepage {
-    static function test() {
+use WIPCMS\core\common\Controller;
+
+class Homepage extends Controller {
+    function test() {
         echo 'Dit werkt!';
     }
 
-    static function showParams($param1, $param2, $param3) {
+    function showParams($param1, $param2, $param3) {
         echo "these are the params: " . $param1 . ', ' . $param2 . ', ' . $param3;
     }
 }

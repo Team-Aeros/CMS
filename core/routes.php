@@ -19,8 +19,8 @@ $routes = new RouteCollection();
 
 /* ADD ROUTES BELOW THIS LINE */
 
-$routes->add('home', new Route('/', ['Homepage::test']));
-$routes->add('test', new Route('/test', ['Homepage::showParams', ['hello', 1, 'hoi'] ]));
+$routes->add('home', new Route('/', ['Homepage@test']));
+$routes->add('admin_login', new Route('/admin', ['Admin@showLogin']));
 
 /* ADD ROUTES ABOVE THIS LINE */
 
