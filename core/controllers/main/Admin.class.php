@@ -14,9 +14,11 @@
 namespace WIPCMS\core\controllers\main;
 
 use WIPCMS\core\common\Controller;
+use function WIPCMS\core\returnView;
 
 class Admin extends Controller {
-    function showLogin() {
-        echo $this->view('login.html.twig', ['page_title' => 'test title!']);
+
+    function showLogin() : void {
+        echo returnView('login', ['page_title' => 'test title!']);
     }
 }
