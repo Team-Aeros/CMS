@@ -35,7 +35,7 @@ class GUI implements Storable {
         $this->createDefaultParams();
 
         $this->_templatePaths = [
-            CONFIG['paths']['themes'] . '/' . $theme . '/templates'
+            CONFIG['paths']['root'] . '/core/views', CONFIG['paths']['themes'] . '/' . $theme . '/templates'
         ];
 
         $this->_twig = new Twig_Environment(new Twig_Loader_Filesystem($this->_templatePaths));
