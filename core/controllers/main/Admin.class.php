@@ -14,6 +14,7 @@
 namespace WIPCMS\core\controllers\main;
 
 use WIPCMS\core\common\Controller;
+use WIPCMS\core\common\Router;
 use WIPCMS\core\database\ORM;
 use function WIPCMS\core\returnView;
 
@@ -29,11 +30,9 @@ class Admin extends Controller {
         if ($user != null) {
             $_SESSION['email'] = $user->getEmail();
             $_SESSION['password'] = $user->getPassword();
-            header("Location: admin/panel");
-            die;
+            Router::redirect("admin/panel");
         }
-        header("Location: admin");
-        die;
+        Router::redirect("admin");
     }
 
     public function panel() : void {
@@ -42,8 +41,7 @@ class Admin extends Controller {
 
         // Wederom middleware!
         if ($user == null) {
-            header("Location: admin");
-            die;
+            Router::redirect('admin');
         }
 
         var_dump($_SESSION);
@@ -53,5 +51,6 @@ class Admin extends Controller {
     public function logout() : void {
         session_destroy();
         echo "you are logged out!";
+        Router::redirect('login');
     }
 }
