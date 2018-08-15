@@ -23,7 +23,7 @@ $routes->add('home', new Route('/', ['Homepage@test']));
 
 $routes->add('admin_panel', new Route('admin/panel', ['Admin@panel']));
 $routes->add('admin_logout', new Route('admin/logout', ['Admin@logout']));
-$routes->add('admin_login', new Route('/admin', ['Admin@showLogin']));
+$routes->add('admin_login', new Route('/admin/{test}', ['Admin@showLogin', 'middleware' => ['test']]));
 $routes->add('login', new Route('/login', ['Admin@login']));
 
 

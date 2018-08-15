@@ -13,7 +13,7 @@
 
 namespace WIPCMS\core\controllers\main;
 
-use WIPCMS\core\common\Registry;
+use WIPCMS\core\common\{Middleware, Registry};
 
 class Core {
 
@@ -43,6 +43,10 @@ class Core {
 
         $class = 'WIPCMS\core\controllers\main\\' . $call[0];
         $controller = new $class();
-        $controller->{$call[1]}((count($route) > 2) ? $route[1] : []);
+
+        if (count($route) > 2)
+            Middleware::checkRequest($route);
+
+        $controller->{$call[1]}($route);
     }
 }

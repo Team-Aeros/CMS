@@ -25,8 +25,6 @@ use WIPCMS\core\common\{GUI, Language, Registry, Router};
 use WIPCMS\core\controllers\main\Core;
 
 function init() : void {
-    session_start();
-
     if (version_compare(phpversion(), REQUIRED_PHP_VERSION, '<'))
         die('Unsupported PHP version. PHP version ' . REQUIRED_PHP_VERSION . ' or higher is required.');
 
@@ -45,6 +43,8 @@ function init() : void {
         @error_reporting(E_ALL);
         @ini_set('display_errors', 'On');
     }
+
+    session_start();
 
     Registry::store('router', new Router(__DIR__ . '/routes.php'));
     Registry::store('language', new Language(CONFIG['site']['default_language']));
