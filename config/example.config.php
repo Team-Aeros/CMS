@@ -15,7 +15,8 @@ const CONFIG = [
     ],
 
     'urls' => [
-        'root' => 'http://localhost/CMS'
+        'root' => 'http://localhost/CMS',
+        'public' => 'http://localhost/CMS/public'
     ],
 
     'paths' => [

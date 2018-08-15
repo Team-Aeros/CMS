@@ -35,7 +35,8 @@ class GUI implements Storable {
         $this->createDefaultParams();
 
         $this->_templatePaths = [
-            CONFIG['paths']['root'] . '/core/views', CONFIG['paths']['themes'] . '/' . $theme . '/templates'
+            CONFIG['paths']['root'] . '/core/views',
+            CONFIG['paths']['themes'] . '/' . $theme . '/templates'
         ];
 
         $this->_twig = new Twig_Environment(new Twig_Loader_Filesystem($this->_templatePaths));
@@ -58,8 +59,9 @@ class GUI implements Storable {
 
     private function createDefaultParams() : void {
         $this->_defaultParams = [
-            'site_url' => CONFIG['urls']['root']
-        ];   
+            'site_url' => CONFIG['urls']['root'],
+            'public_url' => CONFIG['urls']['public']
+        ];
     }
 
     public function addDefaultParams(array $params) : void {
