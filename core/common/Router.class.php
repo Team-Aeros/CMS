@@ -76,4 +76,10 @@ class Router implements Storable {
 
         return $route;
     }
+
+    public static function redirect($route) : void {
+        ob_clean();
+        header("Location: " . CONFIG['urls']['root'] . "/index.php/" . $route);
+        die;
+    }
 }

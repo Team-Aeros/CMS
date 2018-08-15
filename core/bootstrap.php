@@ -25,6 +25,8 @@ use WIPCMS\core\common\{GUI, Language, Registry, Router};
 use WIPCMS\core\controllers\main\Core;
 
 function init() : void {
+    session_start();
+
     if (version_compare(phpversion(), REQUIRED_PHP_VERSION, '<'))
         die('Unsupported PHP version. PHP version ' . REQUIRED_PHP_VERSION . ' or higher is required.');
 
