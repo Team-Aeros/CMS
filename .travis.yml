@@ -5,5 +5,5 @@ php:
 
 install:
   - composer install
-  - npm install
+  - npm install ./public
   - for file in config/*; do cp "$file" "${file//example./}"; done

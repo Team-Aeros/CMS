@@ -46,6 +46,8 @@ class Language implements Storable {
                 throw new Exception(sprintf('Could not load language file named %s.language.php', $filename));
 
             $this->_strings[$filename] = require $file;
+
+            $this->_loadedFiles[] = $filename;
         }
     }
 
@@ -64,10 +66,12 @@ class Language implements Storable {
             if (!in_array($identifier[0], $this->_loadedFiles))
                 $this->loadFile($identifier[0]);
 
-            if (!empty($languageString = $this->_strings[$identifier[0]][$identifier[1]]))
+            $languageString = $this->_strings[$identifier[0]][$identifier[1]] ?? null;
+
+            if (!empty($languageString))
                 return count($parameters) > 0 ? sprintf($languageString, ...$parameters) : $languageString;
         }
 
-        return sprintf('Could not find language string by identifier %s', $identifier);
+        return sprintf('Could not find language string by identifier %s', implode('.', $identifier));
     }
 }
