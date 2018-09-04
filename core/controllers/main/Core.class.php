@@ -41,7 +41,7 @@ class Core {
         if (count($call) !== 2)
             die(sprintf('Route not declared correctly, should be Class@Function: %s on line %u', __FILE__, __LINE__));
 
-        $class = 'WIPCMS\core\controllers\main\\' . $call[0];
+        $class = 'WIPCMS\core\controllers\\' . $call[0];
         $controller = new $class();
 
         if (count($route) > 2)

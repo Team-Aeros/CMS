@@ -20,11 +20,14 @@ $routes = new RouteCollection();
 /* ADD ROUTES BELOW THIS LINE */
 
 $routes->add('home', new Route('/', ['Homepage@test']));
-$routes->add('admin_panel', new Route('admin/panel', ['Admin@panel']));
-$routes->add('admin_logout', new Route('admin/logout', ['Admin@logout']));
-$routes->add('admin_login', new Route('/admin/{test}', ['Admin@showLogin', 'middleware' => ['test']]));
-$routes->add('login', new Route('/login', ['Admin@login']));
 
+$routes->add('admin_login', new Route('/admin',      ['main\Admin@showLogin', 'middleware' => ['authentication']]));
+$routes->add('admin_panel', new Route('/admin/panel', ['main\Admin@panel'    , 'middleware' => ['authentication']]));
+
+$routes->add('auth_login',  new Route('/login',       ['auth\Authentication@login']));
+$routes->add('auth_logout', new Route('admin/logout', ['auth\Authentication@logout']));
+
+$routes->add('test_middleware', new Route('/admin/{test}', ['main\Admin@showLogin', 'middleware' => ['test']]));
 
 /* ADD ROUTES ABOVE THIS LINE */
 
