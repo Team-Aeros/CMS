@@ -65,10 +65,20 @@ class Router implements Storable {
     }
 
     public function getCurrentRoute() : array {
+        $pathInfo = $this->_requestContext->getPathInfo();
+        $route = $this->findRoute($pathInfo);
+
+        if (empty($route) && substr($_SERVER['REQUEST_URI'], -1) === '/')
+            $route = $this->findRoute(rtrim($pathInfo, '/'));
+
+        return $route;
+    }
+
+    private function findRoute(string $pathInfo) : array {
         $route = [];
 
         try {
-            $route = $this->_matcher->match($this->_requestContext->getPathInfo());
+            $route = $this->_matcher->match($pathInfo);
         }
         catch (RouteNotFoundException | ResourceNotFoundException | NoConfigurationException $e) {
             // do nothing
