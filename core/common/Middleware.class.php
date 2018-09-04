@@ -13,12 +13,12 @@
 
 namespace WIPCMS\core\common;
 
-use WIPCMS\core\middleware\Test;
+use WIPCMS\core\middleware\Authorization;
 
 class Middleware {
 
     private const MIDDLEWARES = [
-        'test' => Test::class 
+        'authorization' => Authorization::class
     ];
 
     public static function checkRequest(array $request) : void {

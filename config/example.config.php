@@ -22,5 +22,7 @@ const CONFIG = [
     'paths' => [
         'root' => '/your/server/CMS',
         'themes' => '/your/server/CMS/public/themes'
-    ]
+    ],
+
+    'debug' => true
 ];
