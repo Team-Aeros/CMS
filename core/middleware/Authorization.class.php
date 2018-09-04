@@ -13,7 +13,7 @@
 
 namespace WIPCMS\core\middleware;
 
-use WIPCMS\core\controllers\auth\Authorization;
+use WIPCMS\core\controllers\auth\Authorization as AuthorizationController;
 
 class Authorization {
 
@@ -24,7 +24,7 @@ class Authorization {
         /**
          * @todo Replace with appropriate error message
          */
-        if (Authorization::checkUserPermission(Registry::get('user'), $request['permission']))
+        if (AuthorizationController::checkUserPermission(Registry::get('user'), $request['permission']))
             bootError('User does not have the correct permission to access this area.');
     }
 }
