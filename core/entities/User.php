@@ -1,10 +1,23 @@
 <?php
+/**
+ * WIP CMS
+ * Open source content management system
+ *
+ * @version 1.0 Alpha 1
+ * @author Aeros Development
+ * @copyright 2018, WIP CMS
+ * @link https://aeros.com/wipcms
+ *
+ * @license MIT
+ */
+
+use WIPCMS\core\interfaces\Storable;
 
 /**
  * @Entity
  * @Table(name="users")
  */
-class User
+class User implements Storable
 {
     /** @Id @Column(type="integer") @GeneratedValue */
     private $id;
@@ -40,6 +53,10 @@ class User
     public function __construct()
     {
         $this->created_at = new \DateTime('now');
+    }
+
+    public function isRoot() : bool {
+        return $this->group == 0;
     }
 
     /**

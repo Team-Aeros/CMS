@@ -13,31 +13,37 @@
 
 namespace WIPCMS\core\common;
 
+use WIPCMS\core\middleware\Authorization;
 use WIPCMS\core\middleware\Authentication;
 
 class Middleware {
 
     private const MIDDLEWARES = [
+        'authorization' => Authorization::class
+    ];
+
+    // The following middleware will ALWAYS be run. Each element should be a string containing an existing key in MIDDLEWARES.
+    private const DEFAULT_MIDDLEWARES = [
         'authentication' => Authentication::class
     ];
 
     public static function checkRequest(array $request) : void {
-        if (!empty($middleware = $request['middleware'])) {
-            // Strings should be turned into arrays
-            if (!is_array($middleware))
-                $middleware = [$middleware];
+        // Strings should be turned into arrays
+        if (!empty($middleware = $request['middleware'] ?? []) && !is_array($middleware))
+            $middleware = [$middleware];
 
-            foreach ($middleware as $key) {
-                if (!array_key_exists($key, self::MIDDLEWARES))
-                    die('Call to undefined middleware ' . $key);
+        $middleware = array_merge($middleware, self::DEFAULT_MIDDLEWARES);
 
-                $current = self::MIDDLEWARES[$key];
+        foreach ($middleware as $key) {
+            if (!array_key_exists($key, self::MIDDLEWARES))
+                die('Call to undefined middleware ' . $key);
 
-                if (method_exists($current, '::run()'))
-                    die(sprintf('Invalid middleware %s: run() method does not exist ', $key));
+            $current = self::MIDDLEWARES[$key];
 
-                $object = ($current)::run($request);
-            }
+            if (method_exists($current, '::run()'))
+                die(sprintf('Invalid middleware %s: run() method does not exist ', $key));
+
+            $object = ($current)::run($request);
         }
     }
 }

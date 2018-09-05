@@ -14,7 +14,6 @@
 declare(strict_types = 1);
 
 define('REQUIRED_PHP_VERSION', '7.2.0');
-define('DEBUG', true);
 
 require_once __DIR__ . '/../autoload.php';
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -39,7 +38,7 @@ function init() : void {
     if (!file_exists(__DIR__ . '/../public/node_modules'))
         die('Could not find Javascript dependencies. Please run <em>npm install</em>.');
 
-    if (DEBUG) {
+    if (CONFIG['debug']) {
         @error_reporting(E_ALL);
         @ini_set('display_errors', 'On');
     }
@@ -51,4 +50,9 @@ function init() : void {
     Registry::store('gui', new GUI());
 
     (new Core())->run();
+}
+
+function bootError(string $message) : string {
+    ob_end_clean();
+    die(sprintf('<h1>Fatal error</h1><p>%s</p>', CONFIG['debug'] ? $message : 'A fatal error occurred. Enable debug mode to see a more detailed error message.'));
 }
