@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\{RequestContext, Route, RouteCollection};
 use Symfony\Component\Routing\Exception\{NoConfigurationException, ResourceNotFoundException, RouteNotFoundException};
 use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\Generator\UrlGenerator;
 use WIPCMS\core\interfaces\Storable;
 
 class Router implements Storable {
@@ -26,6 +27,8 @@ class Router implements Storable {
     private $_routeCollection;
     private $_requestContext;
     private $_matcher;
+    private $_generator;
+    private static $_currentRoute;
 
     public function __construct(string $routeFileLocation) {
         $this->_fileLocation = $routeFileLocation ?? 'routes.php';
@@ -33,6 +36,7 @@ class Router implements Storable {
         $this->loadRoutesFile();
         $this->setupRequestContext();
         $this->setupMatcher();
+        $this->setupGenerator();
     }
 
     private function loadRoutesFile() : void {
@@ -56,6 +60,10 @@ class Router implements Storable {
         $this->_matcher = new UrlMatcher($this->_routeCollection, $this->_requestContext);
     }
 
+    private function setupGenerator() : void {
+        $this->_generator = new UrlGenerator($this->_routeCollection, $this->_requestContext);
+    }
+
     public function getRouteCollection() : RouteCollection {
         return $this->_routeCollection;
     }
@@ -64,9 +72,14 @@ class Router implements Storable {
         return $this->_requestContext;
     }
 
+    public function getGenerator() : UrlGenerator {
+        return $this->_generator;
+    }
+
     public function getCurrentRoute() : array {
         $pathInfo = $this->_requestContext->getPathInfo();
         $route = $this->findRoute($pathInfo);
+        self::$_currentRoute = $route;
 
         if (empty($route) && substr($_SERVER['REQUEST_URI'], -1) === '/')
             $route = $this->findRoute(rtrim($pathInfo, '/'));
@@ -74,7 +87,7 @@ class Router implements Storable {
         return $route;
     }
 
-    private function findRoute(string $pathInfo) : array {
+    public function findRoute(string $pathInfo) : array {
         $route = [];
 
         try {
@@ -87,9 +100,14 @@ class Router implements Storable {
         return $route;
     }
 
-    public static function redirect($route) : void {
+    public static function redirect($routeName, $routeParams=[]) : void {
         ob_clean();
-        header("Location: " . CONFIG['urls']['root'] . "/public/" . $route);
+        $result = Registry::retrieve('router')->getGenerator()->generate($routeName, $routeParams);
+        header("Location: " . CONFIG['urls']['base'] . $result);
         die;
+    }
+
+    public static function getRoute() : string {
+        return self::$_currentRoute['_route'];
     }
 }

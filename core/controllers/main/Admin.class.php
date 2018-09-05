@@ -14,8 +14,6 @@
 namespace WIPCMS\core\controllers\main;
 
 use WIPCMS\core\common\Controller;
-use WIPCMS\core\common\Router;
-use WIPCMS\core\database\ORM;
 use function WIPCMS\core\returnView;
 
 class Admin extends Controller {
@@ -24,33 +22,8 @@ class Admin extends Controller {
         echo returnView('login', ['page_title' => 'test title!']);
     }
 
-    public function login() : void {
-        $repo = ORM::getInstance()->getEntityManager()->getRepository('User');
-        $user = $repo->findOneBy(['email' => $_POST['email'], 'password' => $_POST['password']]);
-        if ($user != null) {
-            $_SESSION['email'] = $user->getEmail();
-            $_SESSION['password'] = $user->getPassword();
-            Router::redirect("admin/panel");
-        }
-        Router::redirect("admin");
-    }
-
     public function panel() : void {
-        $repo = ORM::getInstance()->getEntityManager()->getRepository('User');
-        $user = $repo->findOneBy(['email' => $_SESSION['email'], 'password' => $_SESSION['password']]);
-
-        // Wederom middleware!
-        if ($user == null) {
-            Router::redirect('admin');
-        }
-
         var_dump($_SESSION);
         echo "<a href='logout'>log out</a>";
-    }
-
-    public function logout() : void {
-        session_destroy();
-        echo "you are logged out!";
-        Router::redirect('login');
     }
 }

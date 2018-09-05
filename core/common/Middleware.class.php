@@ -14,6 +14,7 @@
 namespace WIPCMS\core\common;
 
 use WIPCMS\core\middleware\Authorization;
+use WIPCMS\core\middleware\Authentication;
 
 class Middleware {
 
@@ -23,7 +24,7 @@ class Middleware {
 
     // The following middleware will ALWAYS be run. Each element should be a string containing an existing key in MIDDLEWARES.
     private const DEFAULT_MIDDLEWARES = [
-        'authorization'
+        'authentication' => Authentication::class
     ];
 
     public static function checkRequest(array $request) : void {

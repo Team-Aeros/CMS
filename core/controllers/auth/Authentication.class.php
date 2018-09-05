@@ -18,5 +18,20 @@ use WIPCMS\core\common\Router;
 use WIPCMS\core\database\ORM;
 
 class Authentication extends Controller {
+    public function login() : void {
+        $repo = ORM::getInstance()->getEntityManager()->getRepository('User');
+        $user = $repo->findOneBy(['email' => $_POST['email'], 'password' => $_POST['password']]);
 
+        if ($user != null) {
+            $_SESSION['user']['email'] = $user->getEmail();
+            $_SESSION['user']['password'] = $user->getPassword();
+            Router::redirect("admin_panel");
+        }
+        Router::redirect("admin_login");
+    }
+
+    public function logout() : void {
+        session_destroy();
+        Router::redirect('admin_login');
+    }
 }
